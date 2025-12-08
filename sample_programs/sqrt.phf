@@ -1,0 +1,17 @@
+var x;var g;var d;var a;var p
+push "Input a number";invoke input;invoke int
+pop x
+g=x
+p=0
+@loop
+p++
+d=((g*g-x)/(2*g))
+g-=d
+if d<0 then d=-d
+if d==0 then jmp @endl
+push d;invoke log;pop a;
+a=-a;
+push "Pass "+p+": Accurate to "+a+" digits";invoke print
+jmp @loop
+@endl
+push "The square root of "+x+" is "+g;invoke print

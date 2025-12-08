@@ -1,13 +1,13 @@
 import another_lexer
 import debracer
 import pproc
-
+public=True#False is for developers only
 def handle(C,V):
   T=another_lexer.tokenise(C)
   T=pproc.post_tokenisation(T)
   T=debracer.parse(T,V)
   return T[1]
-while True:
+while public:
   try:
     with open(input("Input File:")) as f:
       code=f.read()
@@ -18,6 +18,9 @@ while True:
     print(e)
   except KeyboardInterrupt:
     exit()
+if not public:
+  with open("sample_programs\\sqrt.phf") as f:
+      code=f.read()
 V=[]
 #VL=[]
 slots=dict()#alloted slots
@@ -35,13 +38,15 @@ for i in range(len(code)):
     code[i]=""
 code=[line.strip() for line in code if line != '']
 def encode(S):
-  #in the future this will be used to encode data in an easy-to-parse method
-  #for now...
   if type(S) is str:
     S2='"'
     for b in S:
       S2+=hex(256+ord(b)%256)[3:]
     return S2
+  elif type(S) is int:
+    return str(S)#asis
+  elif type(S) is float:
+    return "f"+str(S)
   return str(S)
 def establish(S):
   global slots,slot_max
@@ -143,7 +148,7 @@ squished="\n".join(squished)
 #print(squished)
 #c=input("Newline character? (must be one that doesn't exist in your program):")
 print("Min Allot Size:",slot_max)
-while True:
+while public:
   try:
     with open(input("Output file?"),"w") as f:
       f.write(squished)
