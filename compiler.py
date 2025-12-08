@@ -7,8 +7,17 @@ def handle(C,V):
   T=pproc.post_tokenisation(T)
   T=debracer.parse(T,V)
   return T[1]
-with open("hworld.txt") as f:
-  code=f.read()
+while True:
+  try:
+    with open(input("Input File:")) as f:
+      code=f.read()
+    break
+  except OSError as e:
+    print("Failed to open file, please try again")
+    print("Reason:")
+    print(e)
+  except KeyboardInterrupt:
+    exit()
 V=[]
 #VL=[]
 slots=dict()#alloted slots
@@ -129,5 +138,19 @@ while i<len(compiled):
   si+=1
 for label in labels:
   squished=squished.replace("%"+label+"%",str(labels[label]))
-
+squished=[i.strip() for i in squished.split("\n") if i.strip()!=""]
+squished="\n".join(squished)
 #print(squished)
+#c=input("Newline character? (must be one that doesn't exist in your program):")
+print("Min Allot Size:",slot_max)
+while True:
+  try:
+    with open(input("Output file?"),"w") as f:
+      f.write(squished)
+    break
+  except OSError as e:
+    print("Failed to open file, please try again")
+    print("Reason:")
+    print(e)
+  except KeyboardInterrupt:
+    exit()
