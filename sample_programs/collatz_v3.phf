@@ -1,0 +1,41 @@
+var _count
+_count=0
+call main
+jmp @halt
+
+function collatz
+takes acc
+var length
+_count++
+length=0
+while acc>1
+	length++
+	if acc%2==0
+		acc/=2
+	else
+		acc=3*acc+1
+	endc #End Condition
+endl #End Loop
+return length
+
+function main
+var start
+var length
+var maxlen
+start=0
+maxlen=-1
+while start<10000
+	start++
+	call collatz start
+	retrieve length
+	if length>maxlen
+		maxlen=length
+		push "New Longest Collatz Sequence Found! Starting at "+start+", "+length+" element(s) long."
+		invoke print
+	endc
+endl
+push "The function has been called "+_count+" times.";
+invoke print
+return
+
+@halt

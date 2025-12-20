@@ -16,7 +16,7 @@ def post_tokenisation(code):
     elif(temp[idx].tvalue=="--"):
       temp=temp[:idx-1]+[temp[idx-1],Token("symbol","="),temp[idx-1],Token("symbol","-"),Token("number","1")]+temp[idx+1:]
     else:
-      for op in "+-*/":
+      for op in list("+-*/")+["//"]:
         if(temp[idx].tvalue==(op+"=")):
           temp=temp[:idx-1]+[temp[idx-1],Token("symbol","="),temp[idx-1],Token("symbol",op),temp[idx+1]]+temp[idx+2:]
           break

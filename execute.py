@@ -154,7 +154,7 @@ def handle(token):
     run(token)
 while pointer<len(code):
   line=code[pointer]
-  #print(line)
+  #(line)
   line=line.split(" ")
   #print("Line:",line)
   for token in line:

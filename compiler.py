@@ -2,6 +2,7 @@ import another_lexer
 import debracer
 import pproc
 import coda_onset
+import jsr
 from time import time
 public=True#False is for developers only
 STYLE_ERROR="\033[31m"
@@ -38,7 +39,7 @@ else:
   FLAGS=[]
   
 if "legacy10" not in FLAGS:
-  code=coda_onset.coda_onset(code)
+  code=jsr.fhandle(coda_onset.coda_onset(code))
 
   
 code=code.replace(";","\n").split("\n")
@@ -49,9 +50,9 @@ for i in range(len(code)):
     temp=temp[:_]
   code[i]=temp
   ts=temp.split()
-  if(len(ts)>0 and ts[0]=="var"):
-    V.append(" ".join(ts[1:]))
-    code[i]=""
+  #if(len(ts)>0 and ts[0]=="var"):
+  #  V.append(" ".join(ts[1:]))
+  #  code[i]=""
 code=[line.strip() for line in code if line != '']
 def encode(S):
   if type(S) is str:
@@ -64,8 +65,18 @@ def encode(S):
   elif type(S) is float:
     return "f"+str(S)
   return str(S)
-def establish(S):
+CURRENT_CONTEXT="_"
+def addvc(Sr):
+  global CURRENT_CONTEXT
+  if(Sr[0]!="_"):
+    S=CURRENT_CONTEXT+"."+Sr
+  else:
+    S=Sr
+  return S
+def establish(Sr):
   global slots,slot_max
+  #if S2 ==r
+  S=addvc(Sr)
   if S not in slots:
     slots[S]=slot_max
     slot_max+=1
@@ -98,7 +109,9 @@ def addline(l):
   compiled+="\n"
   #if w:
   #  print(l,"was added from",w)
+
 def cpl(line):
+  global CURRENT_CONTEXT
   temp=line.split()
   if line[0]=="@":
     addline(line)
@@ -114,6 +127,10 @@ def cpl(line):
   elif temp[0]=="jmp":
     argp="%"+arg[1:]+"%"
     addline(argp+" jmp")
+  elif temp[0]=="context":
+    CURRENT_CONTEXT=arg
+  elif temp[0]=="var":
+    V.append(arg)
     #print("Jump to",argp)
   elif temp[0]=="jsr":
     argp="%"+arg[1:]+"%"
