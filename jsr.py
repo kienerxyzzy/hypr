@@ -39,7 +39,9 @@ def fhandle(code):
     elif temp[0]=="return":
       for c in temp[1:]:
         result+="push "+c+"\n"
-      result+="rtn\ncontext _\n"
+      result+="rtn\n"
+    elif temp[0]=="endf":
+      result+="context _\n"
     elif temp[0]=="retrieve":
       for c in temp[-1:0:-1]:
         result+="pop "+c+"\n"

@@ -17,6 +17,7 @@ while acc>1
 	endc #End Condition
 endl #End Loop
 return length
+endf
 
 function main
 var start
@@ -37,5 +38,6 @@ endl
 push "The function has been called "+_count+" times.";
 invoke print
 return
+endf
 
 @halt

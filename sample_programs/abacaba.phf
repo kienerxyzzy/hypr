@@ -1,0 +1,32 @@
+#today we test
+#RECURSION
+call main
+jmp @halt
+
+function abacaba
+takes N
+	if N==0
+		return ""
+	endc
+	var result
+	var temp
+	push N#As of now, Hypr doesn't preserve vars
+	call abacaba N-1
+	retrieve temp
+	pop N#So we'll have to preserve 'em manually
+	result=temp+" "+N+" "+temp
+return result
+endf
+
+function main
+	var N
+	N=5
+	var result
+	call abacaba N
+	retrieve result
+	push result
+	invoke print
+return
+endf
+
+@halt
