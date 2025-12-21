@@ -4,17 +4,19 @@ call main
 jmp @halt
 
 function abacaba
-takes N
+takes N K
 	if N==0
 		return ""
 	endc
 	var result
 	var temp
 	push N#As of now, Hypr doesn't preserve vars
-	call abacaba N-1
+	push K
+	call abacaba N-1 K//2
 	retrieve temp
+	pop K
 	pop N#So we'll have to preserve 'em manually
-	result=temp+" "+N+" "+temp
+	result=temp+" "+K+" "+temp
 return result
 endf
 
@@ -22,7 +24,7 @@ function main
 	var N
 	N=5
 	var result
-	call abacaba N
+	call abacaba N 16
 	retrieve result
 	push result
 	invoke print

@@ -1,3 +1,6 @@
+#WARNING! This interpreter has been deprecated,
+#and will only run Hypr 1.0 files.
+#Use the compiler and executor for a (way) better experience.
 import another_lexer
 import debracer
 import pproc
