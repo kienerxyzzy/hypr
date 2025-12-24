@@ -14,7 +14,7 @@ def handle(C,V):
   T=debracer.parse(T,V)
   return T[1]
 DEV_MODE_NAME=""
-DEV_MODE_ENABLE=True
+DEV_MODE_ENABLE=False
 if not DEV_MODE_ENABLE:
   while True:
     try:
