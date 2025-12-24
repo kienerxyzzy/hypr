@@ -6,12 +6,15 @@ function test
 takes arg1 arg2 arg3
 var m n
 return result result2
+endf
 
 function test2
+preserve m n
 var m n
 call test2 m n m+n
 retrieve p q
 return
+endf
 
 call test2
 """
@@ -19,14 +22,16 @@ call test2
 #if not, then we're screwed.
 def fhandle(code):
   result="context _\n"
-  context=""
+  #context=""
+  preserve=[]
   for line in code.split("\n"):
     temp=split.sasplit(line)
     if len(temp)==0:
       continue
     elif temp[0]=="function":
+
       arg=temp[1]
-      context=arg
+      #context=arg
       result+="context "+arg+"\n"
       result+="@hfun."+arg+"\n"
     elif temp[0]=="takes":
@@ -40,15 +45,27 @@ def fhandle(code):
       for c in temp[1:]:
         result+="push "+c+"\n"
       result+="rtn\n"
+    elif temp[0]=="var":
+      for c in temp[1:]:
+        result+="var "+c+"\n"
+    elif temp[0]=="preserve":
+      for c in temp[1:]:
+        preserve.append(c)
     elif temp[0]=="endf":
+      preserve=[]
       result+="context _\n"
     elif temp[0]=="retrieve":
       for c in temp[-1:0:-1]:
         result+="pop "+c+"\n"
+      for c in preserve[::-1]:
+        result+="pop "+c+"\n"
     elif temp[0]=="call":
+      for c in preserve:
+        result+="push "+c+"\n"
       for c in temp[2:]:
         result+="push "+c+"\n"
       result+="jsr @hfun."+temp[1]+"\n"
+      
     else:
       result+=line+"\n"
   return result

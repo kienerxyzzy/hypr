@@ -1,0 +1,28 @@
+20 jsr
+28 jmp
+0 swap =
+1 swap =
+1 ? 0 == isf
+7 jmp
+9 jmp
+"
+rtn
+1 ?
+0 ?
+1 ? 1 -
+0 ? 2 //
+2 jsr
+2 swap =
+0 swap =
+1 swap =
+3 2 ? "20 + 0 ? + "20 + 2 ? + =
+3 ?
+rtn
+4 5 =
+4 ?
+16
+2 jsr
+5 swap =
+5 ?
+"7072696e74 invoke
+rtn
