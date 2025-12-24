@@ -12,21 +12,7 @@ def handle(C,V):
   return T[1]
 
 
-"""
-PLANNED FEATURES
-print ... (strings were unified into code)
-jmp ... (haha)
-jsr ...
-rtn
-push ... / pop ... /invoke
-(function stuff)
-goal: make cursed programming language
-that treates assignments as if they were operators
-yes, "=" is an operator, and so is "=="
-planned:
-if/then/else
-temporary if: if <COND> then <CODE> yes
-"""
+
 
 with open("hworld.txt") as f:
   code=f.read()

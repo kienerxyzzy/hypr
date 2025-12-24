@@ -17,7 +17,12 @@ Computes the square root of a number, as (unfortunately) the language doesn't (y
 Hypr 1.1 massively simplifies control flow.
 ### collatz_v2.phf
 `test.phf` rewritten in 1.1 as a demonstation.
-### ocdfg_fizzbuzz.phf
+### fizzbuzz.phf
 A slightly modified FizzBuzz program, to test nested ifs.
+### collatz_v3.phf
+I just love the Collatz problem as a benchmark for the compiler. Tests functions
+### abacaba.phf
+`1 2 1 4 1 2 1 8 1 2 1 4 1 2 1`
+The numeric ABACABA sequence. See above. Tests recursion.
 # Formats
 Hypr uses 2 file formats, PHF (Plain Hypr File) for reading by the Interpreter, and CHF (Compiled Hypr File) for accelerated execution. CHF is simpler for computers, while PHF is best for programmers.
