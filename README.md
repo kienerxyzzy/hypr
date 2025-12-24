@@ -1,7 +1,7 @@
 # hypr
 A little programming language that I made
 # Notes
-I'm too lazy to make docs, so you'll have to reverse engineer the six example code files added... for now.
+Docs aren't available yet, so you'll have to reverse engineer the example code files added...for now.
 Also the programming language hasn't been settled yet and things may change.
 ## Hypr 1.0 code files
 To compile Hypr 1.0 code files in the 1.1 version of the compiler, add `#legacy10` at the top of your code.
@@ -23,6 +23,7 @@ A slightly modified FizzBuzz program, to test nested ifs.
 I just love the Collatz problem as a benchmark for the compiler. Tests functions
 ### abacaba.phf
 `1 2 1 4 1 2 1 8 1 2 1 4 1 2 1`
+
 The numeric ABACABA sequence. See above. Tests recursion.
 # Formats
 Hypr uses 2 file formats, PHF (Plain Hypr File) for reading by the Interpreter, and CHF (Compiled Hypr File) for accelerated execution. CHF is simpler for computers, while PHF is best for programmers.
