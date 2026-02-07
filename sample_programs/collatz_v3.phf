@@ -14,8 +14,8 @@ while acc>1
 		acc/=2
 	else
 		acc=3*acc+1
-	endc #End Condition
-endl #End Loop
+	endc
+endl
 return length
 endf
 
